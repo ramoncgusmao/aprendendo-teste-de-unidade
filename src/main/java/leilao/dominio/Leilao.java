@@ -55,8 +55,10 @@ public class Leilao {
 	public void dobraLance(Usuario usuario) {
 		double valor = 0;
 		valor = ultimoLanceDo(usuario, valor);
-		
-		propoe(new Lance(usuario, valor*2));
+		if(valor > 0) {
+			
+			propoe(new Lance(usuario, valor*2));
+		}
 		
 	}
 

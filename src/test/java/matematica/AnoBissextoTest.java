@@ -10,7 +10,7 @@ public class AnoBissextoTest {
 	public void ehMultiploDe4() {
 		
 		AnoBissexto  ano = new AnoBissexto();
-		int valor = 16;
+		int valor = 2016;
 		
 		assertEquals(true, ano.ehBissexto(valor));
 		assertEquals(false, ano.ehBissexto(valor + 1));
