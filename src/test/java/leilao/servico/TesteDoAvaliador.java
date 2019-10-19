@@ -1,6 +1,7 @@
 package leilao.servico;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -57,16 +58,6 @@ public class TesteDoAvaliador {
 
 	}
 
-	@Test
-	public void testaMediaDeZeroLance() {
-
-		Leilao leilao = new ConstrutorDeLeilao().para("Play 3").builder();
-
-		leiloeiro.avalia(leilao);
-
-		assertEquals(0, leiloeiro.getValorMedio(), 0.0001);
-
-	}
 
 	@Test
 	public void deveEncontrarOsTresMaioresLance() {
@@ -99,6 +90,12 @@ public class TesteDoAvaliador {
 		assertEquals(100, leiloeiro.getMenorDeTodos(), 0.00001);
 	}
 	
-
+	@Test
+	public void naoDeveAvaliarLeiloesSemNenhumLanceDado() {
+		
+		Leilao leilao = new ConstrutorDeLeilao().para("play 5").builder();
+		
+		assertThrows(RuntimeException.class, () ->{ leiloeiro.avalia(leilao);});
+	}
 
 }

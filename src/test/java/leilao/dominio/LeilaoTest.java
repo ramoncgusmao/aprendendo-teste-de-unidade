@@ -1,6 +1,7 @@
 package leilao.dominio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -116,4 +117,19 @@ public class LeilaoTest {
 		assertEquals(1, leilao.getLances().size());
 		assertEquals(2200.0, leilao.getLances().get(0).getValor(), 0.00001);
 	}
+	
+	@Test
+	public void testeLanceNegativo() {
+	
+		
+		assertThrows(IllegalArgumentException.class, () ->{
+			leilao = new ConstrutorDeLeilao().para(produto).lance(steveJobs, -50.0).builder();
+		});
+		
+		assertThrows(IllegalArgumentException.class, () ->{
+			leilao = new ConstrutorDeLeilao().para(produto).lance(steveJobs, 0).builder();
+		});
+	}
+	
+	
 }
